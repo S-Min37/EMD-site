@@ -276,7 +276,8 @@ export async function getPersonBySlug(slug: string): Promise<PersonFull | null> 
     photo,
     links,
     order,
-    highlights: highlights.length ? highlights : undefined,
+    highlights: (data?.highlights?.length ? data.highlights : undefined),
+
     projects,
     publications,
     html,
