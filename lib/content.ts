@@ -1,4 +1,3 @@
-
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
@@ -56,7 +55,6 @@ export type Person = {
   }>;
 };
 
-
 export type PersonFull = Person & {
   html: string;
   raw: string;
@@ -105,8 +103,6 @@ function normalizeLinks(value: unknown): Array<{ label: string; url: string }> {
     .filter(Boolean) as Array<{ label: string; url: string }>;
 }
 
-
-
 function normalizePersonProjects(value: unknown): Person["projects"] {
   if (!value || !Array.isArray(value)) return undefined;
   const items = value
@@ -143,9 +139,12 @@ function normalizePersonPublications(value: unknown): Person["publications"] {
     .filter(Boolean) as NonNullable<Person["publications"]>;
   return items.length ? items : undefined;
 }
+
 export async function getAllNews(): Promise<NewsPost[]> {
   const dir = path.join(CONTENT_DIR, "news");
-  const files = readDirSafe(dir).filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
+  const files = readDirSafe(dir).filter(
+    (f) => f.endsWith(".md") || f.endsWith(".mdx")
+  );
 
   const posts: NewsPost[] = files.map((file) => {
     const filePath = path.join(dir, file);
@@ -176,10 +175,7 @@ export async function getAllNews(): Promise<NewsPost[]> {
 
 export async function getNewsBySlug(slug: string): Promise<NewsPostFull | null> {
   const dir = path.join(CONTENT_DIR, "news");
-  const candidates = [
-    path.join(dir, `${slug}.md`),
-    path.join(dir, `${slug}.mdx`),
-  ];
+  const candidates = [path.join(dir, `${slug}.md`), path.join(dir, `${slug}.mdx`)];
   const filePath = candidates.find((p) => fs.existsSync(p));
   if (!filePath) return null;
 
@@ -210,7 +206,9 @@ export async function getNewsBySlug(slug: string): Promise<NewsPostFull | null> 
 
 export async function getAllPeople(): Promise<Person[]> {
   const dir = path.join(CONTENT_DIR, "people");
-  const files = readDirSafe(dir).filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
+  const files = readDirSafe(dir).filter(
+    (f) => f.endsWith(".md") || f.endsWith(".mdx")
+  );
 
   const people: Person[] = files.map((file) => {
     const filePath = path.join(dir, file);
@@ -226,11 +224,26 @@ export async function getAllPeople(): Promise<Person[]> {
     const photo = data.photo ? String(data.photo) : undefined;
     const links = normalizeLinks(data.links);
     const order = data.order !== undefined ? Number(data.order) : undefined;
-    const highlights = normalizeArray((data as any).highlights);
+
+    const highlightsArr = normalizeArray((data as any).highlights);
+    const highlights = highlightsArr.length ? highlightsArr : undefined;
     const projects = normalizePersonProjects((data as any).projects);
     const publications = normalizePersonPublications((data as any).publications);
 
-    return { slug, name, role, category, interests, email, photo, links, order, highlights: highlights.length ? highlights : undefined, projects, publications };
+    return {
+      slug,
+      name,
+      role,
+      category,
+      interests,
+      email,
+      photo,
+      links,
+      order,
+      highlights,
+      projects,
+      publications,
+    };
   });
 
   people.sort((a, b) => {
@@ -245,10 +258,7 @@ export async function getAllPeople(): Promise<Person[]> {
 
 export async function getPersonBySlug(slug: string): Promise<PersonFull | null> {
   const dir = path.join(CONTENT_DIR, "people");
-  const candidates = [
-    path.join(dir, `${slug}.md`),
-    path.join(dir, `${slug}.mdx`),
-  ];
+  const candidates = [path.join(dir, `${slug}.md`), path.join(dir, `${slug}.mdx`)];
   const filePath = candidates.find((p) => fs.existsSync(p));
   if (!filePath) return null;
 
@@ -264,6 +274,11 @@ export async function getPersonBySlug(slug: string): Promise<PersonFull | null> 
   const links = normalizeLinks(data.links);
   const order = data.order !== undefined ? Number(data.order) : undefined;
 
+  const highlightsArr = normalizeArray((data as any).highlights);
+  const highlights = highlightsArr.length ? highlightsArr : undefined;
+  const projects = normalizePersonProjects((data as any).projects);
+  const publications = normalizePersonPublications((data as any).publications);
+
   const html = await markdownToHtml(content);
 
   return {
@@ -276,8 +291,7 @@ export async function getPersonBySlug(slug: string): Promise<PersonFull | null> 
     photo,
     links,
     order,
-    highlights: (data?.highlights?.length ? data.highlights : undefined),
-
+    highlights,
     projects,
     publications,
     html,
@@ -286,7 +300,13 @@ export async function getPersonBySlug(slug: string): Promise<PersonFull | null> 
   };
 }
 
-export type SimpleItem = { title: string; year?: string; org?: string; period?: string; note?: string };
+export type SimpleItem = {
+  title: string;
+  year?: string;
+  org?: string;
+  period?: string;
+  note?: string;
+};
 
 export function readMarkdownDoc(docPath: string) {
   const fullPath = path.join(process.cwd(), docPath);
