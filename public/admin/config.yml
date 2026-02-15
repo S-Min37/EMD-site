@@ -1,0 +1,64 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "news"
+    label: "News"
+    folder: "content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date}} — {{title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Summary", name: "summary", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Cover image", name: "cover", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "people"
+    label: "People Profiles"
+    folder: "content/people"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{name}} — {{role}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Professor","Postdoc","Graduate","Undergraduate","Staff","Alumni"], default: "Graduate" }
+      - { label: "Order", name: "order", widget: "number", required: false, value_type: "int" }
+      - { label: "Email", name: "email", widget: "string", required: false }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - label: "Links"
+        name: "links"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+      - { label: "Interests", name: "interests", widget: "list", required: false }
+      - { label: "Highlights", name: "highlights", widget: "list", required: false }
+      - label: "Projects"
+        name: "projects"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Role", name: "role", widget: "string", required: false }
+          - { label: "Period", name: "period", widget: "string", required: false }
+          - { label: "Summary", name: "summary", widget: "text", required: false }
+          - { label: "Link", name: "link", widget: "string", required: false }
+      - label: "Publications"
+        name: "publications"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Citation", name: "citation", widget: "string" }
+          - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
