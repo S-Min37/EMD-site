@@ -22,4 +22,4 @@ interests:
 - (예) 논문 제목 / 저널/학회 / 연도
 
 ### Skills / Tools
-- (예) MATLAB, Simulink, ANSYS, JMAG, Python, C/C++, LabVIEW 등
+- JMAG
