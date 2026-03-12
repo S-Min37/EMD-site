@@ -15,5 +15,5 @@ export const siteConfig = {
   },
   // Set this after you create a GitHub repo. Example:
   // "https://github.com/ORG/REPO/edit/main"
-  repoEditBase: "",
+  repoEditBase: "https://github.com/S-Min37/EMD-site/edit/main",
 };
