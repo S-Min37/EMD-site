@@ -50,16 +50,21 @@ export default async function PersonPage({ params }: { params: { slug: string } 
   return (
     <div className="py-10">
       <Container>
+
         {/* Header */}
         <div className="relative overflow-hidden rounded-3xl border border-zinc-200/70 bg-white p-6 shadow-sm dark:border-zinc-800/70 dark:bg-zinc-950">
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-zinc-50 via-white to-zinc-100 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-900" />
+
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+
             <div className="flex items-start gap-5">
               <Avatar name={person.name} photo={person.photo} size={104} />
+
               <div className="min-w-0">
                 <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
                   {person.name}
                 </h1>
+
                 <div className="mt-2 text-zinc-600 dark:text-zinc-300">
                   {person.role} · {person.category}
                 </div>
@@ -92,22 +97,27 @@ export default async function PersonPage({ params }: { params: { slug: string } 
                     ))}
                   </div>
                 ) : null}
+
               </div>
             </div>
 
+            {/* 오른쪽 버튼 */}
             <div className="flex flex-wrap gap-3 md:justify-end">
+
               <Link
                 href="/people"
                 className="rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-900"
               >
                 ← People 목록
               </Link>
+
               <Link
                 href="/news"
                 className="rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-900"
               >
                 News
               </Link>
+
               {edit ? (
                 <a
                   href={edit}
@@ -115,15 +125,17 @@ export default async function PersonPage({ params }: { params: { slug: string } 
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Edit profile
+                  Edit this profile
                 </a>
               ) : null}
+
             </div>
           </div>
         </div>
 
         {/* Body */}
         <div className="mt-8 grid gap-6 lg:grid-cols-12">
+
           <div className="lg:col-span-8">
             <div className="rounded-3xl border border-zinc-200/70 bg-white p-6 shadow-sm dark:border-zinc-800/70 dark:bg-zinc-950">
               <Prose html={person.html} />
@@ -131,7 +143,7 @@ export default async function PersonPage({ params }: { params: { slug: string } 
           </div>
 
           <aside className="lg:col-span-4 flex flex-col gap-5">
-            {/* Highlights */}
+
             {highlights.length ? (
               <Card title="Highlights" description="핵심 성과/관심 분야를 한눈에">
                 <ul className="mt-4 space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
@@ -145,7 +157,6 @@ export default async function PersonPage({ params }: { params: { slug: string } 
               </Card>
             ) : null}
 
-            {/* Projects */}
             {projects.length ? (
               <Card title="Projects" description="진행/참여 프로젝트">
                 <div className="mt-4 grid gap-3">
@@ -162,17 +173,20 @@ export default async function PersonPage({ params }: { params: { slug: string } 
                             p.title
                           )}
                         </div>
+
                         {p.period ? (
                           <div className="text-xs text-zinc-500 dark:text-zinc-400">
                             {p.period}
                           </div>
                         ) : null}
                       </div>
+
                       {p.role ? (
                         <div className="mt-1 text-xs text-zinc-600 dark:text-zinc-300">
                           {p.role}
                         </div>
                       ) : null}
+
                       {p.summary ? (
                         <div className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">
                           {p.summary}
@@ -184,9 +198,8 @@ export default async function PersonPage({ params }: { params: { slug: string } 
               </Card>
             ) : null}
 
-            {/* Publications */}
             {pubs.length ? (
-              <Card title="Selected Publications" description="대표 논문/성과(개인 선택)">
+              <Card title="Selected Publications" description="대표 논문/성과">
                 <ol className="mt-4 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
                   {pubs.map((x, i) => (
                     <li key={x.citation} className="flex gap-3">
@@ -206,34 +219,30 @@ export default async function PersonPage({ params }: { params: { slug: string } 
               </Card>
             ) : null}
 
-            {/* Edit shortcut */}
-            <Card title="How to update" description="본인 페이지/뉴스를 ‘쉽게’ 수정하는 방법">
+            {/* Update 안내 */}
+            <Card title="How to update" description="본인 페이지를 쉽게 수정하는 방법">
               <div className="mt-4 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
+
                 <p>
-                  1) <span className="font-medium">/admin</span>에서 CMS로 작성하거나,
-                  2) GitHub에서 Markdown 파일을 웹에서 바로 편집할 수 있어요.
+                  GitHub에서 Markdown 파일을 직접 수정할 수 있습니다.
                 </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    href="/admin"
+
+                {edit ? (
+                  <a
+                    href={edit}
+                    target="_blank"
+                    rel="noreferrer"
                     className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
                   >
-                    Open CMS (/admin)
-                  </Link>
-                  {edit ? (
-                    <a
-                      href={edit}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-900"
-                    >
-                      Edit on GitHub
-                    </a>
-                  ) : null}
-                </div>
+                    Edit this profile
+                  </a>
+                ) : null}
+
               </div>
             </Card>
+
           </aside>
+
         </div>
       </Container>
     </div>
