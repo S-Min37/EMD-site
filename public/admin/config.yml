@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: S-Min37/EMD-site
   branch: main
 
 publish_mode: editorial_workflow
