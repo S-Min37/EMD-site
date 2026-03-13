@@ -1,5 +1,5 @@
 ---
-name: "Gilsu Choi, Ph.D."
+name: "Gilsu Choi"
 role: "Assistant Professor of Electrical Engineering"
 category: "Professor"
 order: 1
