@@ -1,10 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { groq } from "next-sanity";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
 import readingTime from "reading-time";
+
+import { sanityFetch } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import { getSanityTags } from "@/sanity/lib/tags";
+
+export type ContentSource = "sanity" | "filesystem";
 
 export type NewsPost = {
   slug: string;
@@ -14,6 +21,7 @@ export type NewsPost = {
   tags: string[];
   cover?: string;
   readingMinutes: number;
+  source?: ContentSource;
 };
 
 export type NewsPostFull = NewsPost & {
@@ -39,8 +47,7 @@ export type Person = {
   photo?: string;
   links: Array<{ label: string; url: string }>;
   order?: number;
-
-  // Portfolio-style optional fields (can be edited by each member)
+  source?: ContentSource;
   highlights?: string[];
   projects?: Array<{
     title: string;
@@ -61,7 +68,131 @@ export type PersonFull = Person & {
   filePath: string;
 };
 
+type MarkdownDocType = "publication" | "project";
+
+type MarkdownDoc = {
+  data: Record<string, unknown>;
+  content: string;
+  filePath: string;
+  source: ContentSource;
+};
+
+type MarkdownDocHtml = MarkdownDoc & {
+  html: string;
+};
+
+type SanityNewsRecord = {
+  title?: string;
+  slug?: string;
+  date?: string;
+  summary?: string;
+  tags?: unknown;
+  cover?: unknown;
+  coverUrl?: string;
+  body?: string;
+};
+
+type SanityPersonRecord = {
+  name?: string;
+  slug?: string;
+  role?: string;
+  category?: string;
+  interests?: unknown;
+  email?: string;
+  photo?: unknown;
+  photoUrl?: string;
+  links?: unknown;
+  order?: number | string;
+  highlights?: unknown;
+  projects?: unknown;
+  publications?: unknown;
+  body?: string;
+};
+
+type SanityMarkdownRecord = {
+  title?: string;
+  body?: string;
+};
+
 const CONTENT_DIR = path.join(process.cwd(), "content");
+const SANITY_MARKDOWN_DOCS: Partial<Record<string, MarkdownDocType>> = {
+  "content/publications.md": "publication",
+  "content/projects.md": "project",
+};
+
+const allNewsQuery = groq`
+  *[_type == "news" && defined(slug.current)]
+  | order(coalesce(publishedAt, _createdAt) desc) {
+    title,
+    "slug": slug.current,
+    "date": coalesce(publishedAt, _createdAt),
+    "summary": coalesce(excerpt, ""),
+    "tags": coalesce(tags, []),
+    cover,
+    coverUrl,
+    body
+  }
+`;
+
+const newsBySlugQuery = groq`
+  *[_type == "news" && slug.current == $slug][0]{
+    title,
+    "slug": slug.current,
+    "date": coalesce(publishedAt, _createdAt),
+    "summary": coalesce(excerpt, ""),
+    "tags": coalesce(tags, []),
+    cover,
+    coverUrl,
+    body
+  }
+`;
+
+const allPeopleQuery = groq`
+  *[_type == "people" && defined(slug.current)]{
+    name,
+    "slug": slug.current,
+    "role": coalesce(position, role, ""),
+    "category": coalesce(category, "Graduate"),
+    "interests": coalesce(interests, []),
+    email,
+    photo,
+    photoUrl,
+    "links": coalesce(links, []),
+    order,
+    "highlights": coalesce(highlights, []),
+    "projects": coalesce(projects, []),
+    "publications": coalesce(publications, []),
+    body
+  }
+`;
+
+const personBySlugQuery = groq`
+  *[_type == "people" && slug.current == $slug][0]{
+    name,
+    "slug": slug.current,
+    "role": coalesce(position, role, ""),
+    "category": coalesce(category, "Graduate"),
+    "interests": coalesce(interests, []),
+    email,
+    photo,
+    photoUrl,
+    "links": coalesce(links, []),
+    order,
+    "highlights": coalesce(highlights, []),
+    "projects": coalesce(projects, []),
+    "publications": coalesce(publications, []),
+    body
+  }
+`;
+
+const markdownDocumentQuery = groq`
+  *[_type == $type] | order(_updatedAt desc)[0]{
+    title,
+    body
+  }
+`;
+
+let hasLoggedSanityReadError = false;
 
 function readDirSafe(dir: string) {
   if (!fs.existsSync(dir)) return [];
@@ -83,14 +214,13 @@ async function markdownToHtml(markdown: string) {
 
 function normalizeArray(value: unknown): string[] {
   if (!value) return [];
-  if (Array.isArray(value)) return value.map(String);
-  if (typeof value === "string") return [value];
+  if (Array.isArray(value)) return value.map(String).filter(Boolean);
+  if (typeof value === "string") return value ? [value] : [];
   return [];
 }
 
 function normalizeLinks(value: unknown): Array<{ label: string; url: string }> {
-  if (!value) return [];
-  if (!Array.isArray(value)) return [];
+  if (!value || !Array.isArray(value)) return [];
   return value
     .map((x) => {
       if (!x || typeof x !== "object") return null;
@@ -140,7 +270,215 @@ function normalizePersonPublications(value: unknown): Person["publications"] {
   return items.length ? items : undefined;
 }
 
-export async function getAllNews(): Promise<NewsPost[]> {
+function normalizeString(value: unknown, fallback = "") {
+  return typeof value === "string" && value.trim() ? value : fallback;
+}
+
+function normalizeOptionalString(value: unknown) {
+  if (typeof value !== "string") return undefined;
+  return value.trim() ? value : undefined;
+}
+
+function normalizeNumber(value: unknown) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return undefined;
+}
+
+function fallbackSlug(input: string) {
+  return input
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+function resolveImageUrl(source: unknown, fallback?: string, width = 1200) {
+  if (fallback) return fallback;
+  if (!source) return undefined;
+
+  try {
+    return urlFor(source as never).width(width).fit("max").auto("format").url();
+  } catch {
+    return undefined;
+  }
+}
+
+function logSanityReadError(error: unknown) {
+  if (hasLoggedSanityReadError) return;
+  if (
+    error &&
+    typeof error === "object" &&
+    "digest" in error &&
+    error.digest === "DYNAMIC_SERVER_USAGE"
+  ) {
+    return;
+  }
+  hasLoggedSanityReadError = true;
+  console.warn("Sanity read failed for Studio-managed content.", error);
+}
+
+async function safeFetchSanity<T>(
+  query: string,
+  params?: Record<string, unknown>,
+  tags: string[] = []
+): Promise<T | null> {
+  try {
+    return await sanityFetch<T>({
+      query,
+      params: (params ?? {}) as never,
+      tags,
+    });
+  } catch (error) {
+    logSanityReadError(error);
+    return null;
+  }
+}
+
+function mapSanityNewsPost(record: SanityNewsRecord): NewsPost {
+  const slug = normalizeString(record.slug) || fallbackSlug(normalizeString(record.title, "news"));
+  const body = normalizeString(record.body);
+
+  return {
+    slug,
+    title: normalizeString(record.title, slug),
+    date: normalizeString(record.date, "1970-01-01"),
+    summary: normalizeString(record.summary),
+    tags: normalizeArray(record.tags),
+    cover: resolveImageUrl(record.cover, normalizeOptionalString(record.coverUrl)),
+    readingMinutes: Math.max(1, Math.round(readingTime(body).minutes)),
+    source: "sanity",
+  };
+}
+
+async function mapSanityNewsPostFull(record: SanityNewsRecord): Promise<NewsPostFull> {
+  const post = mapSanityNewsPost(record);
+  const raw = normalizeString(record.body);
+
+  return {
+    ...post,
+    html: await markdownToHtml(raw),
+    raw,
+    filePath: "",
+  };
+}
+
+function mapSanityPerson(record: SanityPersonRecord): Person {
+  const name = normalizeString(record.name, "Unknown");
+  const slug = normalizeString(record.slug) || fallbackSlug(name);
+
+  return {
+    slug,
+    name,
+    role: normalizeString(record.role),
+    category: normalizeString(record.category, "Graduate"),
+    interests: normalizeArray(record.interests),
+    email: normalizeOptionalString(record.email),
+    photo: resolveImageUrl(record.photo, normalizeOptionalString(record.photoUrl), 400),
+    links: normalizeLinks(record.links),
+    order: normalizeNumber(record.order),
+    highlights: normalizeArray(record.highlights).length
+      ? normalizeArray(record.highlights)
+      : undefined,
+    projects: normalizePersonProjects(record.projects),
+    publications: normalizePersonPublications(record.publications),
+    source: "sanity",
+  };
+}
+
+async function mapSanityPersonFull(record: SanityPersonRecord): Promise<PersonFull> {
+  const person = mapSanityPerson(record);
+  const raw = normalizeString(record.body);
+
+  return {
+    ...person,
+    html: await markdownToHtml(raw),
+    raw,
+    filePath: "",
+  };
+}
+
+function sortPeople(people: Person[]) {
+  return [...people].sort((a, b) => {
+    const ao = a.order ?? 9999;
+    const bo = b.order ?? 9999;
+    if (ao !== bo) return ao - bo;
+    return a.name.localeCompare(b.name);
+  });
+}
+
+async function getAllNewsFromSanity(): Promise<NewsPost[]> {
+  const records = await safeFetchSanity<SanityNewsRecord[]>(
+    allNewsQuery,
+    undefined,
+    getSanityTags("news")
+  );
+  if (!records?.length) return [];
+  return records.map(mapSanityNewsPost);
+}
+
+async function getNewsBySlugFromSanity(slug: string): Promise<NewsPostFull | null> {
+  const record = await safeFetchSanity<SanityNewsRecord | null>(
+    newsBySlugQuery,
+    { slug },
+    getSanityTags("news")
+  );
+  if (!record) return null;
+  return mapSanityNewsPostFull(record);
+}
+
+async function getAllPeopleFromSanity(): Promise<Person[]> {
+  const records = await safeFetchSanity<SanityPersonRecord[]>(
+    allPeopleQuery,
+    undefined,
+    getSanityTags("people")
+  );
+  if (!records?.length) return [];
+  return sortPeople(records.map(mapSanityPerson));
+}
+
+async function getPersonBySlugFromSanity(slug: string): Promise<PersonFull | null> {
+  const record = await safeFetchSanity<SanityPersonRecord | null>(
+    personBySlugQuery,
+    { slug },
+    getSanityTags("people")
+  );
+  if (!record) return null;
+  return mapSanityPersonFull(record);
+}
+
+async function getMarkdownDocFromSanity(
+  docPath: string
+): Promise<MarkdownDocHtml | null> {
+  const type = SANITY_MARKDOWN_DOCS[docPath];
+  if (!type) return null;
+
+  const doc = await safeFetchSanity<SanityMarkdownRecord | null>(
+    markdownDocumentQuery,
+    { type },
+    getSanityTags(type)
+  );
+  if (!doc?.body) return null;
+
+  const content = normalizeString(doc.body);
+  const title =
+    normalizeOptionalString(doc.title) ??
+    path.basename(docPath, path.extname(docPath));
+
+  return {
+    data: { title },
+    content,
+    filePath: "",
+    html: await markdownToHtml(content),
+    source: "sanity",
+  };
+}
+
+function getAllNewsFromFilesystem(): NewsPost[] {
   const dir = path.join(CONTENT_DIR, "news");
   const files = readDirSafe(dir).filter(
     (f) => f.endsWith(".md") || f.endsWith(".mdx")
@@ -166,6 +504,7 @@ export async function getAllNews(): Promise<NewsPost[]> {
       tags,
       cover,
       readingMinutes: Math.max(1, Math.round(readingTime(content).minutes)),
+      source: "filesystem",
     };
   });
 
@@ -173,7 +512,7 @@ export async function getAllNews(): Promise<NewsPost[]> {
   return posts;
 }
 
-export async function getNewsBySlug(slug: string): Promise<NewsPostFull | null> {
+async function getNewsBySlugFromFilesystem(slug: string): Promise<NewsPostFull | null> {
   const dir = path.join(CONTENT_DIR, "news");
   const candidates = [path.join(dir, `${slug}.md`), path.join(dir, `${slug}.mdx`)];
   const filePath = candidates.find((p) => fs.existsSync(p));
@@ -188,8 +527,6 @@ export async function getNewsBySlug(slug: string): Promise<NewsPostFull | null> 
   const tags = normalizeArray(data.tags);
   const cover = data.cover ? String(data.cover) : undefined;
 
-  const html = await markdownToHtml(content);
-
   return {
     slug,
     title,
@@ -198,13 +535,14 @@ export async function getNewsBySlug(slug: string): Promise<NewsPostFull | null> 
     tags,
     cover,
     readingMinutes: Math.max(1, Math.round(readingTime(content).minutes)),
-    html,
+    html: await markdownToHtml(content),
     raw,
     filePath: path.relative(process.cwd(), filePath),
+    source: "filesystem",
   };
 }
 
-export async function getAllPeople(): Promise<Person[]> {
+function getAllPeopleFromFilesystem(): Person[] {
   const dir = path.join(CONTENT_DIR, "people");
   const files = readDirSafe(dir).filter(
     (f) => f.endsWith(".md") || f.endsWith(".mdx")
@@ -224,11 +562,14 @@ export async function getAllPeople(): Promise<Person[]> {
     const photo = data.photo ? String(data.photo) : undefined;
     const links = normalizeLinks(data.links);
     const order = data.order !== undefined ? Number(data.order) : undefined;
-
-    const highlightsArr = normalizeArray((data as any).highlights);
+    const highlightsArr = normalizeArray((data as Record<string, unknown>).highlights);
     const highlights = highlightsArr.length ? highlightsArr : undefined;
-    const projects = normalizePersonProjects((data as any).projects);
-    const publications = normalizePersonPublications((data as any).publications);
+    const projects = normalizePersonProjects(
+      (data as Record<string, unknown>).projects
+    );
+    const publications = normalizePersonPublications(
+      (data as Record<string, unknown>).publications
+    );
 
     return {
       slug,
@@ -243,20 +584,14 @@ export async function getAllPeople(): Promise<Person[]> {
       highlights,
       projects,
       publications,
+      source: "filesystem",
     };
   });
 
-  people.sort((a, b) => {
-    const ao = a.order ?? 9999;
-    const bo = b.order ?? 9999;
-    if (ao !== bo) return ao - bo;
-    return a.name.localeCompare(b.name);
-  });
-
-  return people;
+  return sortPeople(people);
 }
 
-export async function getPersonBySlug(slug: string): Promise<PersonFull | null> {
+async function getPersonBySlugFromFilesystem(slug: string): Promise<PersonFull | null> {
   const dir = path.join(CONTENT_DIR, "people");
   const candidates = [path.join(dir, `${slug}.md`), path.join(dir, `${slug}.mdx`)];
   const filePath = candidates.find((p) => fs.existsSync(p));
@@ -273,13 +608,14 @@ export async function getPersonBySlug(slug: string): Promise<PersonFull | null> 
   const photo = data.photo ? String(data.photo) : undefined;
   const links = normalizeLinks(data.links);
   const order = data.order !== undefined ? Number(data.order) : undefined;
-
-  const highlightsArr = normalizeArray((data as any).highlights);
+  const highlightsArr = normalizeArray((data as Record<string, unknown>).highlights);
   const highlights = highlightsArr.length ? highlightsArr : undefined;
-  const projects = normalizePersonProjects((data as any).projects);
-  const publications = normalizePersonPublications((data as any).publications);
-
-  const html = await markdownToHtml(content);
+  const projects = normalizePersonProjects(
+    (data as Record<string, unknown>).projects
+  );
+  const publications = normalizePersonPublications(
+    (data as Record<string, unknown>).publications
+  );
 
   return {
     slug,
@@ -294,10 +630,27 @@ export async function getPersonBySlug(slug: string): Promise<PersonFull | null> 
     highlights,
     projects,
     publications,
-    html,
+    html: await markdownToHtml(content),
     raw,
     filePath: path.relative(process.cwd(), filePath),
+    source: "filesystem",
   };
+}
+
+export async function getAllNews(): Promise<NewsPost[]> {
+  return getAllNewsFromSanity();
+}
+
+export async function getNewsBySlug(slug: string): Promise<NewsPostFull | null> {
+  return getNewsBySlugFromSanity(slug);
+}
+
+export async function getAllPeople(): Promise<Person[]> {
+  return getAllPeopleFromSanity();
+}
+
+export async function getPersonBySlug(slug: string): Promise<PersonFull | null> {
+  return getPersonBySlugFromSanity(slug);
 }
 
 export type SimpleItem = {
@@ -308,17 +661,30 @@ export type SimpleItem = {
   note?: string;
 };
 
-export function readMarkdownDoc(docPath: string) {
+export function readMarkdownDoc(docPath: string): MarkdownDoc | null {
   const fullPath = path.join(process.cwd(), docPath);
   if (!fs.existsSync(fullPath)) return null;
   const raw = readFileSafe(fullPath);
   const { data, content } = matter(raw);
-  return { data, content, filePath: path.relative(process.cwd(), fullPath) };
+  return {
+    data: data as Record<string, unknown>,
+    content,
+    filePath: path.relative(process.cwd(), fullPath),
+    source: "filesystem",
+  };
 }
 
-export async function getMarkdownDocHtml(docPath: string) {
+export async function getMarkdownDocHtml(docPath: string): Promise<MarkdownDocHtml | null> {
+  const sanityType = SANITY_MARKDOWN_DOCS[docPath];
+  if (sanityType) {
+    return getMarkdownDocFromSanity(docPath);
+  }
+
   const doc = readMarkdownDoc(docPath);
   if (!doc) return null;
-  const html = await markdownToHtml(doc.content);
-  return { ...doc, html };
+
+  return {
+    ...doc,
+    html: await markdownToHtml(doc.content),
+  };
 }

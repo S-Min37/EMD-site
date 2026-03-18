@@ -6,6 +6,8 @@ import { Avatar } from "@/components/Avatar";
 import { Tag } from "@/components/Tag";
 import { getAllPeople } from "@/lib/content";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "People",
 };
@@ -37,15 +39,15 @@ export default async function PeoplePage() {
           <div>
             <h1 className="text-3xl font-semibold tracking-tight">People</h1>
             <p className="mt-2 max-w-2xl text-zinc-600 dark:text-zinc-300">
-              각 구성원은 자기 페이지(포트폴리오)를 직접 수정할 수 있습니다.
-              (GitHub “Edit” 버튼 또는 Markdown 파일 수정)
+              Faculty, researchers, and students currently affiliated with the
+              lab.
             </p>
           </div>
           <Link
             href="/alumni"
             className="text-sm font-medium text-zinc-700 underline underline-offset-4 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
           >
-            Alumni 보기 →
+            View Alumni
           </Link>
         </div>
 

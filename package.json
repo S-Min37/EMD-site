@@ -6,18 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity:seed": "node scripts/build-sanity-seed.mjs",
+    "sanity:import": "node scripts/build-sanity-seed.mjs && npx sanity exec scripts/import-sanity-content.cjs --with-user-token"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "next": "^14.2.0",
+    "next-sanity": "^9.12.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reading-time": "^1.5.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "sanity": "^3.99.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",

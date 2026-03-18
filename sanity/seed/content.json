@@ -1,0 +1,881 @@
+[
+  {
+    "_id": "siteSettings",
+    "_type": "siteSettings",
+    "name": "EMD Lab",
+    "longName": "Electric Machines and Drives Lab",
+    "institution": "Inha University, Department of Electrical Engineering",
+    "locale": "ko-KR",
+    "url": "https://example.com",
+    "description": "Electric Machines and Drives Lab at Inha University researches electric machines, drives, sensors, and electrified propulsion systems for e-mobility.",
+    "contactEmail": "gchoi@inha.ac.kr",
+    "addressKo": "인천광역시 미추홀구 인하로 100 인하대학교 하이테크센터 605호(교수 연구실) / 630호(학생 연구실)",
+    "addressEn": "Hi-Tech Building Rm. 605 (Professor) / Rm. 630 (Students), 100 Inha-ro, Michuhol-gu, Incheon 22212, Korea",
+    "navItems": [
+      {
+        "_key": "nav-research-0",
+        "_type": "navLink",
+        "label": "Research",
+        "href": "/research",
+        "children": []
+      },
+      {
+        "_key": "nav-projects-1",
+        "_type": "navLink",
+        "label": "Projects",
+        "href": "/projects",
+        "children": []
+      },
+      {
+        "_key": "nav-publications-2",
+        "_type": "navLink",
+        "label": "Publications",
+        "href": "/publications",
+        "children": [
+          {
+            "_key": "child-journals-0",
+            "_type": "childLink",
+            "label": "Journals",
+            "href": "/publications/journals"
+          },
+          {
+            "_key": "child-conferences-1",
+            "_type": "childLink",
+            "label": "Conferences",
+            "href": "/publications/conferences"
+          },
+          {
+            "_key": "child-patents-2",
+            "_type": "childLink",
+            "label": "Patents",
+            "href": "/publications/patents"
+          }
+        ]
+      },
+      {
+        "_key": "nav-people-3",
+        "_type": "navLink",
+        "label": "People",
+        "href": "/people",
+        "children": [
+          {
+            "_key": "child-alumni-0",
+            "_type": "childLink",
+            "label": "Alumni",
+            "href": "/alumni"
+          }
+        ]
+      },
+      {
+        "_key": "nav-news-4",
+        "_type": "navLink",
+        "label": "News",
+        "href": "/news",
+        "children": []
+      },
+      {
+        "_key": "nav-courses-5",
+        "_type": "navLink",
+        "label": "Courses",
+        "href": "/courses",
+        "children": []
+      },
+      {
+        "_key": "nav-contact-6",
+        "_type": "navLink",
+        "label": "Contact",
+        "href": "/contact",
+        "children": []
+      }
+    ],
+    "footerLinks": [
+      {
+        "_key": "cta-news-0",
+        "_type": "ctaLink",
+        "label": "News",
+        "href": "/news",
+        "tone": "secondary"
+      },
+      {
+        "_key": "cta-people-1",
+        "_type": "ctaLink",
+        "label": "People",
+        "href": "/people",
+        "tone": "secondary"
+      },
+      {
+        "_key": "cta-contact-2",
+        "_type": "ctaLink",
+        "label": "Contact",
+        "href": "/contact",
+        "tone": "secondary"
+      }
+    ],
+    "footerNote": "Research in electric machines, machine drives, sensors, and electrified mobility systems."
+  },
+  {
+    "_id": "homePage",
+    "_type": "homePage",
+    "eyebrow": "Inha University, Department of Electrical Engineering",
+    "title": "Electric Machines and Drives Lab",
+    "description": "전기기기, 드라이브, 센서, e-모빌리티 전동화 시스템을 중심으로 설계, 해석, 제어, 검증까지 연결되는 연구를 수행합니다.",
+    "heroCtas": [
+      {
+        "_key": "cta-research-0",
+        "_type": "ctaLink",
+        "label": "Research 보기",
+        "href": "/research",
+        "tone": "primary"
+      },
+      {
+        "_key": "cta-1-1",
+        "_type": "ctaLink",
+        "label": "최신 소식",
+        "href": "/news",
+        "tone": "secondary"
+      },
+      {
+        "_key": "cta-join-contact-2",
+        "_type": "ctaLink",
+        "label": "Join / Contact",
+        "href": "/contact",
+        "tone": "secondary"
+      }
+    ],
+    "researchTitle": "Research Areas",
+    "researchIntro": "EMD Lab은 전기기기 설계부터 드라이브 제어, 센서, e-모빌리티 응용까지 연결된 연구 스택을 운영합니다.",
+    "researchCards": [
+      {
+        "_key": "card-electric-machines-0",
+        "_type": "card",
+        "title": "Electric Machines",
+        "description": "전동기 토폴로지, 전자기 해석, 열·구조·NVH, 고성능 설계를 다룹니다.",
+        "href": "/research#electric-machines"
+      },
+      {
+        "_key": "card-machine-drives-1",
+        "_type": "card",
+        "title": "Machine Drives",
+        "description": "인버터, 제어기, HIL 기반 구동 시스템 검증과 fault-tolerant drive를 다룹니다.",
+        "href": "/research#machine-drives"
+      },
+      {
+        "_key": "card-sensors-2",
+        "_type": "card",
+        "title": "Sensors",
+        "description": "구동 시스템용 위치 센서와 VR resolver 설계를 연구합니다.",
+        "href": "/research#sensors"
+      },
+      {
+        "_key": "card-mobility-applications-3",
+        "_type": "card",
+        "title": "Mobility Applications",
+        "description": "EV powertrain, e-mobility traction systems, digital-twin 기반 시스템 분석을 수행합니다.",
+        "href": "/research#mobility"
+      }
+    ],
+    "strengthsTitle": "Lab Strengths",
+    "strengthsIntro": "단일 부품 수준이 아니라 설계-해석-제어-시스템 검증까지 연결된 연구 프로세스를 갖춘 것이 연구실의 핵심 강점입니다.",
+    "strengths": [
+      {
+        "_key": "card-end-to-end-workflow-0",
+        "_type": "card",
+        "title": "End-to-end workflow",
+        "description": "전동기 설계, 전자기·열·구조 해석, 제어기 설계, HIL 및 실험 검증까지 한 흐름으로 다룹니다."
+      },
+      {
+        "_key": "card-e-mobility-focus-1",
+        "_type": "card",
+        "title": "E-mobility focus",
+        "description": "BEV, PHEV, FCEV와 personal mobility를 포함한 전동화 시스템 응용에 집중합니다."
+      },
+      {
+        "_key": "card-multiphysics-optimization-2",
+        "_type": "card",
+        "title": "Multiphysics optimization",
+        "description": "전자기, 열, 구조, NVH를 함께 고려하는 surrogate-assisted optimization을 수행합니다."
+      },
+      {
+        "_key": "card-industry-linked-projects-3",
+        "_type": "card",
+        "title": "Industry-linked projects",
+        "description": "국책과제와 산학 프로젝트를 통해 실제 제약 조건을 반영한 연구를 진행합니다."
+      }
+    ],
+    "newsTitle": "Latest News",
+    "newsIntro": "최근 수상, 학회 발표, 연구실 공지와 주요 업데이트를 확인할 수 있습니다.",
+    "peopleTitle": "People",
+    "peopleIntro": "교수, 연구원, 대학원생, 학부연구생 등 현재 연구실 구성원을 소개합니다.",
+    "hiringTitle": "Join EMD Lab",
+    "hiringDescription": "모터, 드라이브, 전동화 시스템, 센서, 최적화 연구에 관심 있는 학생과 공동연구자를 모집합니다.",
+    "hiringCtas": [
+      {
+        "_key": "cta-contact-join-0",
+        "_type": "ctaLink",
+        "label": "Contact / Join 안내",
+        "href": "/contact",
+        "tone": "primary"
+      }
+    ]
+  },
+  {
+    "_id": "researchPage",
+    "_type": "researchPage",
+    "title": "Research",
+    "intro": "EMD Lab은 전기기기와 구동 시스템, 센서, e-모빌리티 응용을 연결해 이론과 실험을 함께 다루는 연구를 수행합니다.",
+    "sections": [
+      {
+        "_key": "research-electric-machines-0",
+        "_type": "researchSection",
+        "anchor": "electric-machines",
+        "title": "Electric Machines",
+        "intro": "고성능 traction motor와 특수 목적 전동기를 대상으로 설계, 해석, 최적화, NVH까지 통합적으로 연구합니다.",
+        "body": "- High-performance machine topologies\n- Core loss, DC bias, PWM effects\n- Thermal, structural, NVH integrated analysis\n- Multi-objective and multiphysics optimization",
+        "cards": [
+          {
+            "_key": "card-high-performance-topologies-0",
+            "_type": "card",
+            "title": "High-performance topologies",
+            "description": "Wound-field, PM, flux-switching, vernier 등 다양한 전동기 구조를 설계합니다."
+          },
+          {
+            "_key": "card-thermal-structural-nvh-1",
+            "_type": "card",
+            "title": "Thermal / Structural / NVH",
+            "description": "전자기 성능뿐 아니라 열, 구조, 소음·진동 성능까지 함께 고려합니다."
+          }
+        ]
+      },
+      {
+        "_key": "research-machine-drives-1",
+        "_type": "researchSection",
+        "anchor": "machine-drives",
+        "title": "Machine Drives",
+        "intro": "전력변환기, 제어기, 시스템 시뮬레이션, HIL 환경을 포함한 drive-system 설계와 검증을 수행합니다.",
+        "body": "- Coupled electromagnetic-circuit simulation\n- High-fidelity system simulation\n- Characterization and hardware integration\n- Fault diagnosis and tolerant control",
+        "cards": [
+          {
+            "_key": "card-coupled-simulation-0",
+            "_type": "card",
+            "title": "Coupled simulation",
+            "description": "PWM, 전자기, 회로 모델을 함께 묶어 drive-level 성능을 예측합니다."
+          },
+          {
+            "_key": "card-hil-verification-1",
+            "_type": "card",
+            "title": "HIL verification",
+            "description": "실시간 시뮬레이션과 HIL 환경에서 제어 알고리즘과 시스템 응답을 검증합니다."
+          }
+        ]
+      },
+      {
+        "_key": "research-sensors-2",
+        "_type": "researchSection",
+        "anchor": "sensors",
+        "title": "Sensors",
+        "intro": "전동기 구동을 위한 위치·각도 센서 설계와 민감도 분석, 자동차용 resolver 연구를 진행합니다.",
+        "body": "- Variable reluctance resolver design\n- Sensitivity and tolerance analysis\n- Drive-system sensor integration",
+        "cards": [
+          {
+            "_key": "card-vr-resolver-0",
+            "_type": "card",
+            "title": "VR Resolver",
+            "description": "자동차 및 e-mobility 응용을 위한 variable reluctance resolver를 설계합니다."
+          }
+        ]
+      },
+      {
+        "_key": "research-mobility-3",
+        "_type": "researchSection",
+        "anchor": "mobility",
+        "title": "Mobility Applications",
+        "intro": "EV powertrain부터 system-level operation, energy consumption, digital twin까지 확장된 응용 연구를 수행합니다.",
+        "body": "- EV powertrain modeling\n- Digital-twin based operation analysis\n- Transportation and grid integration\n- System databases for reuse",
+        "cards": [
+          {
+            "_key": "card-ev-powertrain-modeling-0",
+            "_type": "card",
+            "title": "EV powertrain modeling",
+            "description": "차량 주행과 동력계 모델을 연결해 에너지 소비와 성능을 분석합니다."
+          },
+          {
+            "_key": "card-integrated-systems-1",
+            "_type": "card",
+            "title": "Integrated systems",
+            "description": "교통 시스템과 전력망을 함께 고려하는 운용 분석과 최적화를 연구합니다."
+          }
+        ]
+      }
+    ],
+    "closingTitle": "Related Content",
+    "closingBody": "연구분야와 연결된 프로젝트, 논문, 특허, 수업 정보도 Sanity Studio에서 함께 관리할 수 있습니다.",
+    "closingLinks": [
+      {
+        "_key": "cta-projects-0",
+        "_type": "ctaLink",
+        "label": "Projects",
+        "href": "/projects",
+        "tone": "primary"
+      },
+      {
+        "_key": "cta-publications-1",
+        "_type": "ctaLink",
+        "label": "Publications",
+        "href": "/publications",
+        "tone": "secondary"
+      },
+      {
+        "_key": "cta-courses-2",
+        "_type": "ctaLink",
+        "label": "Courses",
+        "href": "/courses",
+        "tone": "secondary"
+      }
+    ]
+  },
+  {
+    "_id": "page.projects",
+    "_type": "page",
+    "title": "Projects",
+    "route": "projects",
+    "intro": "연구실에서 수행 중인 주요 국가과제와 산학 프로젝트를 관리합니다.",
+    "cards": [],
+    "ctas": [
+      {
+        "_key": "cta-research-0",
+        "_type": "ctaLink",
+        "label": "Research",
+        "href": "/research",
+        "tone": "secondary"
+      }
+    ],
+    "body": "\r\n\r\n## 2023–2025\r\n\r\n- **Design, modeling, and active control of a PM machine** for silent operation of direct-drive robot arm applications (2023–2025)\r\n- 자동차용 **VR Resolver 각도 오차 저감 설계기술 개발** – (주)동보 (2023)\r\n- 미래차 전장부품용 **BLDC 모터/액추에이터 범용 설계·평가 시스템 개발(2차)** – 부산자동차부품공업협동조합 (2023)\r\n- 미래차 전장부품용 **BLDC 모터/액추에이터 범용 설계·평가 시스템 개발(1차)** – 부산자동차부품공업협동조합 (2022–2023)\r\n\r\n## 2022–2024\r\n\r\n- e-Mobility traction machine 대상 **딥러닝 기반 설계 최적화(멀티피직스/불확실성·공차 포함)** – NRF 한-오스트리아 협력기반조성사업 (2022–2024)\r\n- e-Mobility용 **모델 기반 통합 모터 설계 프로세스 개발** – NRF (2021–2024)\r\n- **희토류 자석을 사용하지 않는(또는 저감) traction machine 설계/해석** – NRF (2023–2024)\r\n- **퍼스널 모빌리티 traction machine 설계(안전 규정 고려)** – NRF (2023–2024)\r\n- **Non-Rare Earth(또는 Reduced-Rare Earth) 소재 기반 traction machine 설계/해석** – Inha University (2023–2024)\r\n\r\n## 주요 프로그램/사업\r\n\r\n- 4단계 BK21 사업 – ICT-미래자동차 융합 교육연구단 (2020–2027)\r\n- 신산업융합형 임베디드시스템 전문인력양성사업 (2021–2026)\r\n\r\n## 2021–2022 (선정 과제 예시)\r\n\r\n- micro EV용 e-powertrain 모델링 및 분석 – NRF (2022–2023)\r\n- 실시간 Power HIL 기반 EV 파워트레인 시스템 평가 – BK21 국제공동연구 (2021–2022)\r\n- wound-field flux-switching machine 딥러닝 기반 설계 최적화 – BK21 국제공동연구 (2022–2023)\r\n- connected/autonomous/shared/electric 차량 + 전력 시스템 통합 운영/보안 기술 – KETEP (2021–2022)\r\n- 혁신성장 글로벌인재 양성사업 – KIAT (2022–2023)\r\n- e-mobility 응용을 위한 전기기기 설계/최적화 – Inha University (2021–2022)\r\n"
+  },
+  {
+    "_id": "page.publications",
+    "_type": "page",
+    "title": "Publications",
+    "route": "publications",
+    "intro": "저널, 학회, 특허를 개별 페이지로 나눠 관리할 수 있도록 구성했습니다.",
+    "cards": [
+      {
+        "_key": "card-journals-0",
+        "_type": "card",
+        "title": "Journals",
+        "description": "Selected journal papers",
+        "href": "/publications/journals"
+      },
+      {
+        "_key": "card-conferences-1",
+        "_type": "card",
+        "title": "Conferences",
+        "description": "Conference proceedings",
+        "href": "/publications/conferences"
+      },
+      {
+        "_key": "card-patents-2",
+        "_type": "card",
+        "title": "Patents",
+        "description": "Domestic and international patents",
+        "href": "/publications/patents"
+      }
+    ],
+    "ctas": [
+      {
+        "_key": "cta-projects-0",
+        "_type": "ctaLink",
+        "label": "Projects",
+        "href": "/projects",
+        "tone": "secondary"
+      }
+    ],
+    "body": ""
+  },
+  {
+    "_id": "page.publications-journals",
+    "_type": "page",
+    "title": "Journal Papers",
+    "route": "publications/journals",
+    "intro": "연구실의 주요 저널 논문 목록입니다.",
+    "cards": [],
+    "ctas": [
+      {
+        "_key": "cta-publications-0",
+        "_type": "ctaLink",
+        "label": "Publications",
+        "href": "/publications",
+        "tone": "secondary"
+      }
+    ],
+    "body": "## Journal Papers (selected)\n\n### 2023 (pipeline)\r\n- Rapid-Prototyping of 3-phase AC Machine Drive System with Subtractive and Additive Manufacturing *(To be published)*\r\n- Design, Analysis, and Experimental Verification of a PM-Based Hybrid Brake System for Personal e-Mobility Applications *(To be published)*\r\n- Optimal Electric Vehicle Charging Planning and Routing Using Real-Time Energy Consumption Prediction Algorithm with Physics-based Powertrain Model *(Under review)*\r\n- Design Optimization of High-Power Density Wound-Field Flux-Switching Machines *(Work underway)*\r\n- A Comprehensive Review of Electric Vehicle Powertrain Modeling and its Applications *(Work underway)*\r\n\r\n### 2022 (pipeline)\r\n- Fault-Tolerant AC Machine Drive Topologies: Inverter, Control, and Electric Machine *(Work underway)*\r\n- Systematic Development of a Multi-Objective Design Optimization Process Based on a Surrogate-Assisted Evolutionary Algorithm for Electric Machine Applications *(To be published)*\r\n- Development of a High Efficiency, High Power Density Brushless Wound-Field Synchronous Machine Drive *(Work underway)*\r\n\r\n### 2018\r\n- Analysis and Design Recommendations to Mitigate Demagnetization Vulnerability in Surface PM Synchronous Machines  \r\n  *(Gilsu Choi, Thomas Jahns — IEEE Transactions on Industry Applications)*\r\n\r\n### 2017\r\n- Experimental Verification of Rotor Demagnetization in a Fractional-Slot Concentrated-Winding PM Synchronous Machine Under Drive Fault Conditions  \r\n  *(Gilsu Choi, Yichao Zhang, Thomas Jahns — IEEE Transactions on Industry Applications)*\r\n\r\n### 2016\r\n- Investigation of Key Factors Influencing the Response of PM Synchronous Machines to Three-Phase Symmetrical Short-Circuit Faults  \r\n  *(Gilsu Choi, Thomas Jahns — IEEE Transactions on Energy Conversion)*\r\n- PM Synchronous Machine Drive Response to Asymmetrical Short-Circuit Faults  \r\n  *(Gilsu Choi, Thomas Jahns — IEEE Transactions on Industry Applications)*\r\n\r\n---"
+  },
+  {
+    "_id": "page.publications-conferences",
+    "_type": "page",
+    "title": "Conference Proceedings",
+    "route": "publications/conferences",
+    "intro": "연구실의 학회 발표 및 conference proceeding 목록입니다.",
+    "cards": [],
+    "ctas": [
+      {
+        "_key": "cta-publications-0",
+        "_type": "ctaLink",
+        "label": "Publications",
+        "href": "/publications",
+        "tone": "secondary"
+      }
+    ],
+    "body": "## Conference Proceedings (selected)\n\n### 2023\r\n- Design, Analysis, and Experimental Verification of a PM-Based Hybrid Brake System for Personal e-Mobility Applications *(Intermag 2023)*\r\n- Design and Analysis of PM Machines for Personal Mobility Applications Considering Safety Regulations *(ECCE 2023)*\r\n- Electromagnetic Performance Analysis of Wound-Field Flux-Switching Machines with Salient and Modular Rotor Structures *(ECCE 2023)*\r\n- 오픈소스 소프트웨어 기반 영구자석형 동기 릴럭턴스 전동기 설계 및 해석 *(대한전기학회 하계학술대회)*\r\n- 퍼스널 모빌리티 구동용 영구자석형 동기전동기 설계 및 해석 *(대한전기학회 하계학술대회)*\r\n- 주행 사이클을 고려한 전동킥보드 성능 분석 *(대한전기학회 하계학술대회)*\r\n- EV 구동용 동기 릴럭턴스 전동기 회전자 설계 및 분석 *(대한전기학회 하계학술대회)*\r\n- 토크 성능 향상을 위한 동기 릴럭턴스 전동기의 회전자 형상 설계 기법 연구 *(대한전기학회 하계학술대회)*\r\n\r\n### 2022\r\n- Design Optimization of Traction Motors using a Quasi-Monte Carlo-based Two-Step Method *(ICEMS 2022)*\r\n- Comparative Analysis of Traction Machines for Micro EV Applications *(ICNGC 2022)*\r\n- GREET을 이용한 내연기관 자동차와 전기자동차의 전 과정 CO2 배출량 분석 *(대한전기학회 하계학술대회)*\r\n- C-Segment 전기자동차 시스템 분석 및 설계 *(대한전기학회 하계학술대회)*\r\n\r\n### 2021\r\n- Development of an Eddy Current Braking System for an e-Mobility Application *(ICNGC 2021)*\r\n- Fault-Tolerant AC Machine Drive Topologies: Inverter, Control, and Electric Machine *(SDEMPED 2021)*\r\n- MATLAB ADVISOR를 이용한 전기자동차 구동모터용 집중권/분포권 IPMSM 효율특성 비교 *(대한전기학회 하계학술대회)*\r\n- 2단 변속기를 적용한 전기 스포츠카의 성능 및 효율특성 분석 *(대한전기학회 하계학술대회)*\r\n\r\n### 2017\r\n- Maximum Efficiency Control Strategy of PM Traction Machine Drives in GM Hybrid and Electric Vehicles  \r\n  *(B. Gallert, G. Choi*, K. Lee, X. Jing, Y. Son — IEEE ECCE)*"
+  },
+  {
+    "_id": "page.publications-patents",
+    "_type": "page",
+    "title": "Patents",
+    "route": "publications/patents",
+    "intro": "국내외 특허 및 출원 항목을 관리합니다.",
+    "cards": [],
+    "ctas": [
+      {
+        "_key": "cta-publications-0",
+        "_type": "ctaLink",
+        "label": "Publications",
+        "href": "/publications",
+        "tone": "secondary"
+      }
+    ],
+    "body": "## International Patents\n\n- Apparatus and method for monitoring magnet flux degradation of a permanent magnet motor, 2019, US Patent\n- Active masking of tonal noise using motor-based acoustic generator to improve sound quality, 2019, US Patent\n\n## Domestic Patents\n\n- 대리모델을 이용한 전동기 형상의 최적설계 방법 및 설계 시스템(출원), 2022\n- 와전류 브레이크를 이용한 전동킥보드용 제동장치(출원), 2021\n- 에너지 효율 향상을 위한 헤어핀 권선 전동기의 슬롯 구조(출원), 2021"
+  },
+  {
+    "_id": "page.courses",
+    "_type": "page",
+    "title": "Courses",
+    "route": "courses",
+    "intro": "연구실에서 담당한 주요 강의 이력을 학기별로 정리합니다.",
+    "cards": [],
+    "ctas": [
+      {
+        "_key": "cta-contact-0",
+        "_type": "ctaLink",
+        "label": "Contact",
+        "href": "/contact",
+        "tone": "secondary"
+      }
+    ],
+    "body": "## 2024 Spring\n\n- ECE5026 - Electric Machine Control Theory (EN, Graduate Course)\n- EEE3317 - Electric Machines and Design\n- EEE4001 - Capstone Design Project\n- FVE4002 - Capstone Design Project 1\n- ACE9703 - Problem Solving Project 3\n- EEE2006 - Basic Experiment I\n\n## 2022 Spring\n\n- EEE3317 - Electric Machines and Design\n- ECE5026 - Electric Machine Control Theory (EN, Graduate Course)\n- IGV5002 - Introduction to EV Powertrain (Graduate Course)\n- EEE4001 - Capstone Design Project\n- EEE2006 - Basic Experiment I\n\n## 2021 Fall\n\n- EEE2002 - Circuit Analysis II (EN)\n- EEE3321 - Electric Vehicle Engineering\n- ECE6054 - Introduction to AC Machine Design (EN, Graduate Course)\n- ACE9704 - Problem Solving Project\n- EEE4001 - Capstone Design Project\n- EEE2007 - Basic Experiment II\n\n## 2021 Spring\n\n- EEE2001 - Circuit Analysis I\n- EEE3317 - Electric Machines and Design\n- ECE5026 - Electric Machine Control Theory (EN, Graduate Course)\n- ACE9703 - Problem Solving Project\n- EEE4001 - Capstone Design Project\n\n## 2020 Fall\n\n- EEE2002 - Circuit Analysis II (EN)\n- EEE3321 - Electric Vehicle Engineering\n\n## 2020 Spring\n\n- EEE2001 - Circuit Analysis I\n- EEE3317 - Electric Machines and Design"
+  },
+  {
+    "_id": "page.contact",
+    "_type": "page",
+    "title": "Contact / Join",
+    "route": "contact",
+    "intro": "연구 참여와 공동연구 문의는 이메일로 연락할 수 있습니다.",
+    "cards": [],
+    "ctas": [
+      {
+        "_key": "cta-people-0",
+        "_type": "ctaLink",
+        "label": "People",
+        "href": "/people",
+        "tone": "secondary"
+      }
+    ],
+    "body": "## Contact Guide\n\n- 관심 연구분야와 간단한 자기소개를 함께 보내 주세요.\n- 학부연구생은 가능한 활동 기간과 주당 가능 시간을 함께 적어 주세요.\n- 대학원 지원자는 관심 주제와 본인의 강점을 구체적으로 적어 주시면 검토가 수월합니다."
+  },
+  {
+    "_id": "page.alumni",
+    "_type": "page",
+    "title": "Alumni",
+    "route": "alumni",
+    "intro": "연구실을 거쳐 간 졸업생과 alumni 정보를 정리합니다.",
+    "cards": [],
+    "ctas": [
+      {
+        "_key": "cta-people-0",
+        "_type": "ctaLink",
+        "label": "People",
+        "href": "/people",
+        "tone": "secondary"
+      }
+    ],
+    "body": "\r\n---\r\ntitle: \"Alumni\"\r\n---\r\n\r\n(이 페이지는 `content/alumni.md`로 관리됩니다.)\r\n\r\n## Alumni\r\n\r\n- Mingyu Choi — 현대자동차 남양연구소 R&D\r\n- Dongwoo Han — 현대자동차 남양연구소 R&D\r\n- Seokju Kim — 현대자동차 남양연구소 R&D\r\n- Jongoh Park — 현대 트랜시스\r\n- Jungmoon Kang — 글로벌디펜스 R&D\r\n- Gwanhui Jang — 현대로템 R&D\r\n"
+  },
+  {
+    "_id": "people.abdur-rehman",
+    "_type": "people",
+    "name": "Dr. Abdur Rehman",
+    "slug": {
+      "_type": "slug",
+      "current": "abdur-rehman"
+    },
+    "role": "Postdoctoral Researcher",
+    "position": "Postdoctoral Researcher",
+    "category": "Postdoc",
+    "interests": [
+      "Vernier PM machines",
+      "Synchronous PM machines"
+    ],
+    "links": [],
+    "order": 10,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- Postdoctoral Researcher\r\n- Interest: Vernier PM machines, Synchronous PM machines\r\n- Ph.D. (2023), Kunsan National University\r\n\r\n## 포트폴리오\r\n\r\n- (본인 연구 성과/코드/논문을 자유롭게 작성)\r\n"
+  },
+  {
+    "_id": "people.dong-geon-lee",
+    "_type": "people",
+    "name": "Dong-geon Lee",
+    "slug": {
+      "_type": "slug",
+      "current": "dong-geon-lee"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "dglee0416@inha.edu",
+    "interests": [
+      "Analytical model",
+      "Electric motor design"
+    ],
+    "links": [],
+    "order": 25,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2026), Inha University\r\n- Interest: Analytical model, Electric motor design\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- (예) MATLAB, Simulink, ANSYS, JMAG, Python, C/C++, LabVIEW 등\r\n"
+  },
+  {
+    "_id": "people.eung-jae-kim",
+    "_type": "people",
+    "name": "Eung-Jae Kim",
+    "slug": {
+      "_type": "slug",
+      "current": "eung-jae-kim"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "andy81314747@inha.edu",
+    "interests": [
+      "Motor control algorithm",
+      "Dual inverter control"
+    ],
+    "links": [],
+    "order": 20,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2024), Inha University\r\n- Interest: Motor control algorithm, Dual inverter control\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- (예) MATLAB, Simulink, ANSYS, JMAG, Python, C/C++, LabVIEW 등\r\n"
+  },
+  {
+    "_id": "people.ghulam-sirewal",
+    "_type": "people",
+    "name": "Dr. Ghulam Sirewal",
+    "slug": {
+      "_type": "slug",
+      "current": "ghulam-sirewal"
+    },
+    "role": "Postdoctoral Researcher",
+    "position": "Postdoctoral Researcher",
+    "category": "Postdoc",
+    "interests": [
+      "Brushless synchronous machines"
+    ],
+    "links": [],
+    "order": 11,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- Postdoctoral Researcher\r\n- Interest: Brushless synchronous machines\r\n- Ph.D. (2020), Hanyang University\r\n\r\n## 포트폴리오\r\n\r\n- (본인 연구 성과/코드/논문을 자유롭게 작성)\r\n"
+  },
+  {
+    "_id": "people.gi-ho-kim",
+    "_type": "people",
+    "name": "Gi-ho Kim",
+    "slug": {
+      "_type": "slug",
+      "current": "gi-ho-kim"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "12201457@inha.edu",
+    "interests": [
+      "Electric motor thermal analysis"
+    ],
+    "links": [],
+    "order": 26,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2026), Inha University\r\n- Interest: Electric motor thermal analysis\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- (예) MATLAB, Simulink, ANSYS, JMAG, Python, C/C++, LabVIEW 등\r\n"
+  },
+  {
+    "_id": "people.gilsu-choi",
+    "_type": "people",
+    "name": "Gilsu Choi, Ph.D.",
+    "slug": {
+      "_type": "slug",
+      "current": "gilsu-choi"
+    },
+    "role": "Assistant Professor of Electrical Engineering",
+    "position": "Assistant Professor of Electrical Engineering",
+    "category": "Professor",
+    "email": "gchoi@inha.ac.kr",
+    "interests": [
+      "Design & control of electric machines",
+      "Electric machine drive systems",
+      "Multi-physics optimization",
+      "Coupled electromagnetic–circuit simulation",
+      "Rare-earth-free traction motors",
+      "Fault diagnostics & prognostics",
+      "NVH and acoustics",
+      "Electrified propulsion systems (BEV/PHEV/FCEV, aircraft, naval)"
+    ],
+    "links": [
+      {
+        "_key": "link-inha-profile-0",
+        "_type": "link",
+        "label": "Inha profile",
+        "url": "https://newdept.inha.ac.kr/profl/bkfveng/407/574/artclView.do"
+      },
+      {
+        "_key": "link-legacy-lab-site-1",
+        "_type": "link",
+        "label": "Legacy lab site",
+        "url": "https://sites.google.com/view/emdlab"
+      }
+    ],
+    "order": 1,
+    "projects": [],
+    "publications": [],
+    "body": "## Biography (요약)\r\n\r\n- 인하대학교 전기공학과 조교수 (2020–현재)\r\n- University of Wisconsin–Madison에서 M.S.(2012), Ph.D.(2016) 취득\r\n- General Motors(Global Electrification Division)에서 4년 근무(2016–2020)\r\n\r\n> 이 소개는 기존 연구실 페이지의 정보를 바탕으로 정리한 “요약”입니다. (문장/표현은 새로 작성)\r\n\r\n## Research Interests\r\n\r\n- High-performance electric machines & drives for electrified propulsion\r\n- Multi-physics design optimization (EM–thermal–structural–NVH)\r\n- Fault modes, diagnostics & prognostics\r\n- System-level efficiency optimization\r\n\r\n## 대표 링크\r\n\r\n- 이메일: gchoi@inha.ac.kr\r\n- 연구실 페이지(기존): https://sites.google.com/view/emdlab\r\n\r\n## Portfolio (예시 템플릿)\r\n\r\n### Selected Projects\r\n- (프로젝트 1)\r\n- (프로젝트 2)\r\n\r\n### Selected Publications\r\n- (논문 1)\r\n- (논문 2)\r\n\r\n### Awards\r\n- (수상 1)\r\n"
+  },
+  {
+    "_id": "people.gyeong-rok-hwang",
+    "_type": "people",
+    "name": "Gyeong-rok Hwang",
+    "slug": {
+      "_type": "slug",
+      "current": "gyeong-rok-hwang"
+    },
+    "role": "Undergraduate Researcher",
+    "position": "Undergraduate Researcher",
+    "category": "Undergraduate",
+    "email": "hwangk6554@gmail.com",
+    "interests": [
+      "Motor control algorithm"
+    ],
+    "links": [],
+    "order": 41,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- Interest: Motor control algorithm\r\n\r\n## 포트폴리오\r\n\r\n- (학부 연구 경험/프로젝트/수업 프로젝트를 작성)\r\n"
+  },
+  {
+    "_id": "people.jae-sung-choi",
+    "_type": "people",
+    "name": "Jae-sung Choi",
+    "slug": {
+      "_type": "slug",
+      "current": "jae-sung-choi"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "jaesung1154@inha.edu",
+    "interests": [
+      "Core loss in electric machine"
+    ],
+    "links": [],
+    "order": 21,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2024), Inha University\r\n- Interest: Core loss in electric machine\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- (예) MATLAB, Simulink, ANSYS, JMAG, Python, C/C++, LabVIEW 등\r\n"
+  },
+  {
+    "_id": "people.jiyoung-yoo",
+    "_type": "people",
+    "name": "Jiyoung Yoo",
+    "slug": {
+      "_type": "slug",
+      "current": "jiyoung-yoo"
+    },
+    "role": "Administrative Staff",
+    "position": "Administrative Staff",
+    "category": "Staff",
+    "email": "yuji0@inha.ac.kr",
+    "interests": [
+      "Administration"
+    ],
+    "links": [],
+    "order": 90,
+    "projects": [],
+    "publications": [],
+    "body": "## 업무\r\n\r\n- Administrative Staff\r\n- Office: Hi-Tech 810\r\n\r\n## 연락\r\n\r\n- 이메일로 문의 부탁드립니다.\r\n"
+  },
+  {
+    "_id": "people.joon-su-han",
+    "_type": "people",
+    "name": "Joon-su Han",
+    "slug": {
+      "_type": "slug",
+      "current": "joon-su-han"
+    },
+    "role": "Undergraduate Researcher",
+    "position": "Undergraduate Researcher",
+    "category": "Undergraduate",
+    "email": "hanjoonsoo@inha.edu",
+    "interests": [
+      "Electric motor design"
+    ],
+    "links": [],
+    "order": 40,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- Interest: Electric motor design\r\n\r\n## 포트폴리오\r\n\r\n- (학부 연구 경험/프로젝트/수업 프로젝트를 작성)\r\n"
+  },
+  {
+    "_id": "people.ju-yeong-shin",
+    "_type": "people",
+    "name": "Ju-yeong Shin",
+    "slug": {
+      "_type": "slug",
+      "current": "ju-yeong-shin"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "s007stsrt1@inha.edu",
+    "interests": [
+      "VR resolver",
+      "Electric motor design"
+    ],
+    "links": [],
+    "order": 22,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2025), Inha University\r\n- Interest: VR resolver, Electric motor design\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- JMAG\r\n"
+  },
+  {
+    "_id": "people.miksa-jozsef-miskolczy",
+    "_type": "people",
+    "name": "Miksa József Miskolczy",
+    "slug": {
+      "_type": "slug",
+      "current": "miksa-jozsef-miskolczy"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "graduate.miskolczy@gmail.com",
+    "interests": [
+      "FEA electromagnetic analysis of PMSM"
+    ],
+    "links": [],
+    "order": 24,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2025), Budapest University of Technology and Economics\r\n- Interest: FEA electromagnetic analysis of PMSM\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- (예) MATLAB, Simulink, ANSYS, JMAG, Python, C/C++, LabVIEW 등\r\n"
+  },
+  {
+    "_id": "people.min-su-kim",
+    "_type": "people",
+    "name": "Min-su Kim",
+    "slug": {
+      "_type": "slug",
+      "current": "min-su-kim"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "bs620144@inha.edu",
+    "interests": [
+      "Motor control algorithm"
+    ],
+    "links": [],
+    "order": 27,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2026), Inha University\r\n- Interest: Motor control algorithm\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- (예) MATLAB, Simulink, ANSYS, JMAG, Python, C/C++, LabVIEW 등\r\n"
+  },
+  {
+    "_id": "people.sang-won-min",
+    "_type": "people",
+    "name": "Sang-won Min",
+    "slug": {
+      "_type": "slug",
+      "current": "sang-won-min"
+    },
+    "role": "Graduate Student",
+    "position": "Graduate Student",
+    "category": "Graduate",
+    "email": "minique37@inha.edu",
+    "interests": [
+      "Structural analysis",
+      "Motor design"
+    ],
+    "links": [],
+    "order": 23,
+    "projects": [],
+    "publications": [],
+    "body": "## 소개\r\n\r\n- B.S. (2025), Inha University\r\n- Interest: Structural analysis, Motor design\r\n\r\n## 포트폴리오 (자유 형식)\r\n\r\n### Projects\r\n- (예) 과제명 / 역할 / 기간 / 결과\r\n\r\n### Publications\r\n- (예) 논문 제목 / 저널/학회 / 연도\r\n\r\n### Skills / Tools\r\n- JMAG\r\n"
+  },
+  {
+    "_id": "news.2023-awards",
+    "_type": "news",
+    "title": "2023년 수상 및 연구실 성과",
+    "slug": {
+      "_type": "slug",
+      "current": "2023-awards"
+    },
+    "publishedAt": "2023-01-01T00:00:00.000Z",
+    "excerpt": "좋은강의에세이 우수상, 대한전기학회 우수논문상, IN-GPS 성과발표 최우수상 등.",
+    "tags": [
+      "Award",
+      "Teaching",
+      "KIEE"
+    ],
+    "body": "2023년에 여러 성과가 있었습니다.\r\n\r\n- 인하대학교 좋은강의에세이 우수상 (교과목: 전기자동차 공학)\r\n- 대한전기학회 하계학술대회 우수논문상\r\n- IN-GPS 실전문제연구팀 성과발표 최우수상\r\n- 공과대학 신진교수상\r\n\r\n(상세 내용/증빙 자료는 필요 시 추가)\r\n"
+  },
+  {
+    "_id": "news.2024-ieee-cefc-presentations",
+    "_type": "news",
+    "title": "2024 IEEE CEFC 학회 발표 4건",
+    "slug": {
+      "_type": "slug",
+      "current": "2024-ieee-cefc-presentations"
+    },
+    "publishedAt": "2024-01-01T00:00:00.000Z",
+    "excerpt": "2024 IEEE CEFC에서 연구실 발표 4건을 진행했습니다.",
+    "tags": [
+      "Conference",
+      "IEEE",
+      "CEFC"
+    ],
+    "body": "2024 IEEE CEFC에서 연구실 발표 4건을 진행했습니다.\r\n\r\n- PM-assisted SynRM 설계/해석(구조 건전성 고려)\r\n- VR Resolver 위치 오차 최소화를 위한 설계 접근\r\n- 저가형 PM Vernier machine 전자계 성능 개선\r\n- DC bias를 고려한 철손(iron loss) 분석(국제 공동 연구)\r\n\r\n(세부 정보/자료는 추가 업데이트 예정)\r\n"
+  },
+  {
+    "_id": "news.2025-in-gps-award",
+    "_type": "news",
+    "title": "2025 IN-GPS 공학교육학술대회 우수발표 논문상 수상",
+    "slug": {
+      "_type": "slug",
+      "current": "2025-in-gps-award"
+    },
+    "publishedAt": "2025-01-01T00:00:00.000Z",
+    "excerpt": "2025년 IN-GPS 실전문제 연구팀 활동 관련 수상 소식.",
+    "tags": [
+      "Award",
+      "IN-GPS"
+    ],
+    "body": "2025년 인하대학교 실전문제 연구팀(IN-GPS) 활동에서 **공학교육학술대회 우수발표 논문상**을 수상했습니다.\r\n\r\n- 연구팀/발표 내용은 내부 정리 후 업데이트 예정\r\n- 사진은 `public/uploads/news/`에 추가한 뒤, 아래처럼 넣으면 됩니다:\r\n\r\n```md\r\n![수상 사진](/uploads/news/2025-in-gps-award.jpg)\r\n```\r\n"
+  },
+  {
+    "_id": "publication.content",
+    "_type": "publication",
+    "title": "Publications",
+    "body": "\r\n---\r\ntitle: \"Publications\"\r\n---\r\n\r\n이 페이지는 **빠르게 업데이트**할 수 있게 Markdown 기반으로 만들었습니다.\r\n\r\n- 지금은 기존 연구실 사이트에 공개된 항목을 “그대로 목록화”한 형태입니다.\r\n- 추후 BibTeX/Google Scholar/ORCID를 붙여 자동 업데이트로 발전시키는 것도 가능합니다.\r\n\r\n---\r\n\r\n## Journal Papers (selected)\r\n\r\n### 2023 (pipeline)\r\n- Rapid-Prototyping of 3-phase AC Machine Drive System with Subtractive and Additive Manufacturing *(To be published)*\r\n- Design, Analysis, and Experimental Verification of a PM-Based Hybrid Brake System for Personal e-Mobility Applications *(To be published)*\r\n- Optimal Electric Vehicle Charging Planning and Routing Using Real-Time Energy Consumption Prediction Algorithm with Physics-based Powertrain Model *(Under review)*\r\n- Design Optimization of High-Power Density Wound-Field Flux-Switching Machines *(Work underway)*\r\n- A Comprehensive Review of Electric Vehicle Powertrain Modeling and its Applications *(Work underway)*\r\n\r\n### 2022 (pipeline)\r\n- Fault-Tolerant AC Machine Drive Topologies: Inverter, Control, and Electric Machine *(Work underway)*\r\n- Systematic Development of a Multi-Objective Design Optimization Process Based on a Surrogate-Assisted Evolutionary Algorithm for Electric Machine Applications *(To be published)*\r\n- Development of a High Efficiency, High Power Density Brushless Wound-Field Synchronous Machine Drive *(Work underway)*\r\n\r\n### 2018\r\n- Analysis and Design Recommendations to Mitigate Demagnetization Vulnerability in Surface PM Synchronous Machines  \r\n  *(Gilsu Choi, Thomas Jahns — IEEE Transactions on Industry Applications)*\r\n\r\n### 2017\r\n- Experimental Verification of Rotor Demagnetization in a Fractional-Slot Concentrated-Winding PM Synchronous Machine Under Drive Fault Conditions  \r\n  *(Gilsu Choi, Yichao Zhang, Thomas Jahns — IEEE Transactions on Industry Applications)*\r\n\r\n### 2016\r\n- Investigation of Key Factors Influencing the Response of PM Synchronous Machines to Three-Phase Symmetrical Short-Circuit Faults  \r\n  *(Gilsu Choi, Thomas Jahns — IEEE Transactions on Energy Conversion)*\r\n- PM Synchronous Machine Drive Response to Asymmetrical Short-Circuit Faults  \r\n  *(Gilsu Choi, Thomas Jahns — IEEE Transactions on Industry Applications)*\r\n\r\n---\r\n\r\n## Conference Proceedings (selected)\r\n\r\n### 2023\r\n- Design, Analysis, and Experimental Verification of a PM-Based Hybrid Brake System for Personal e-Mobility Applications *(Intermag 2023)*\r\n- Design and Analysis of PM Machines for Personal Mobility Applications Considering Safety Regulations *(ECCE 2023)*\r\n- Electromagnetic Performance Analysis of Wound-Field Flux-Switching Machines with Salient and Modular Rotor Structures *(ECCE 2023)*\r\n- 오픈소스 소프트웨어 기반 영구자석형 동기 릴럭턴스 전동기 설계 및 해석 *(대한전기학회 하계학술대회)*\r\n- 퍼스널 모빌리티 구동용 영구자석형 동기전동기 설계 및 해석 *(대한전기학회 하계학술대회)*\r\n- 주행 사이클을 고려한 전동킥보드 성능 분석 *(대한전기학회 하계학술대회)*\r\n- EV 구동용 동기 릴럭턴스 전동기 회전자 설계 및 분석 *(대한전기학회 하계학술대회)*\r\n- 토크 성능 향상을 위한 동기 릴럭턴스 전동기의 회전자 형상 설계 기법 연구 *(대한전기학회 하계학술대회)*\r\n\r\n### 2022\r\n- Design Optimization of Traction Motors using a Quasi-Monte Carlo-based Two-Step Method *(ICEMS 2022)*\r\n- Comparative Analysis of Traction Machines for Micro EV Applications *(ICNGC 2022)*\r\n- GREET을 이용한 내연기관 자동차와 전기자동차의 전 과정 CO2 배출량 분석 *(대한전기학회 하계학술대회)*\r\n- C-Segment 전기자동차 시스템 분석 및 설계 *(대한전기학회 하계학술대회)*\r\n\r\n### 2021\r\n- Development of an Eddy Current Braking System for an e-Mobility Application *(ICNGC 2021)*\r\n- Fault-Tolerant AC Machine Drive Topologies: Inverter, Control, and Electric Machine *(SDEMPED 2021)*\r\n- MATLAB ADVISOR를 이용한 전기자동차 구동모터용 집중권/분포권 IPMSM 효율특성 비교 *(대한전기학회 하계학술대회)*\r\n- 2단 변속기를 적용한 전기 스포츠카의 성능 및 효율특성 분석 *(대한전기학회 하계학술대회)*\r\n\r\n### 2017\r\n- Maximum Efficiency Control Strategy of PM Traction Machine Drives in GM Hybrid and Electric Vehicles  \r\n  *(B. Gallert, G. Choi*, K. Lee, X. Jing, Y. Son — IEEE ECCE)*\r\n"
+  },
+  {
+    "_id": "project.content",
+    "_type": "project",
+    "title": "Projects",
+    "body": "\r\n\r\n## 2023–2025\r\n\r\n- **Design, modeling, and active control of a PM machine** for silent operation of direct-drive robot arm applications (2023–2025)\r\n- 자동차용 **VR Resolver 각도 오차 저감 설계기술 개발** – (주)동보 (2023)\r\n- 미래차 전장부품용 **BLDC 모터/액추에이터 범용 설계·평가 시스템 개발(2차)** – 부산자동차부품공업협동조합 (2023)\r\n- 미래차 전장부품용 **BLDC 모터/액추에이터 범용 설계·평가 시스템 개발(1차)** – 부산자동차부품공업협동조합 (2022–2023)\r\n\r\n## 2022–2024\r\n\r\n- e-Mobility traction machine 대상 **딥러닝 기반 설계 최적화(멀티피직스/불확실성·공차 포함)** – NRF 한-오스트리아 협력기반조성사업 (2022–2024)\r\n- e-Mobility용 **모델 기반 통합 모터 설계 프로세스 개발** – NRF (2021–2024)\r\n- **희토류 자석을 사용하지 않는(또는 저감) traction machine 설계/해석** – NRF (2023–2024)\r\n- **퍼스널 모빌리티 traction machine 설계(안전 규정 고려)** – NRF (2023–2024)\r\n- **Non-Rare Earth(또는 Reduced-Rare Earth) 소재 기반 traction machine 설계/해석** – Inha University (2023–2024)\r\n\r\n## 주요 프로그램/사업\r\n\r\n- 4단계 BK21 사업 – ICT-미래자동차 융합 교육연구단 (2020–2027)\r\n- 신산업융합형 임베디드시스템 전문인력양성사업 (2021–2026)\r\n\r\n## 2021–2022 (선정 과제 예시)\r\n\r\n- micro EV용 e-powertrain 모델링 및 분석 – NRF (2022–2023)\r\n- 실시간 Power HIL 기반 EV 파워트레인 시스템 평가 – BK21 국제공동연구 (2021–2022)\r\n- wound-field flux-switching machine 딥러닝 기반 설계 최적화 – BK21 국제공동연구 (2022–2023)\r\n- connected/autonomous/shared/electric 차량 + 전력 시스템 통합 운영/보안 기술 – KETEP (2021–2022)\r\n- 혁신성장 글로벌인재 양성사업 – KIAT (2022–2023)\r\n- e-mobility 응용을 위한 전기기기 설계/최적화 – Inha University (2021–2022)\r\n"
+  }
+]

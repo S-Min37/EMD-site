@@ -4,14 +4,10 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
 import { Prose } from "@/components/Prose";
 import { Tag } from "@/components/Tag";
-import { getAllNews, getNewsBySlug } from "@/lib/content";
-import { editLink, formatDate } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
+import { getNewsBySlug } from "@/lib/content";
+import { formatDate } from "@/lib/utils";
 
-export async function generateStaticParams() {
-  const posts = await getAllNews();
-  return posts.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = await getNewsBySlug(params.slug);
@@ -29,8 +25,6 @@ export default async function NewsDetailPage({
 }) {
   const post = await getNewsBySlug(params.slug);
   if (!post) return notFound();
-
-  const edit = editLink(siteConfig.repoEditBase, post.filePath);
 
   return (
     <div className="py-12">
@@ -65,16 +59,6 @@ export default async function NewsDetailPage({
             >
               ← News 목록
             </Link>
-            {edit ? (
-              <a
-                href={edit}
-                className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Edit on GitHub
-              </a>
-            ) : null}
           </div>
         </div>
 

@@ -6,14 +6,9 @@ import { Prose } from "@/components/Prose";
 import { Tag } from "@/components/Tag";
 import { Avatar } from "@/components/Avatar";
 import { Card } from "@/components/Card";
-import { getAllPeople, getPersonBySlug } from "@/lib/content";
-import { editLink } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
+import { getPersonBySlug } from "@/lib/content";
 
-export async function generateStaticParams() {
-  const people = await getAllPeople();
-  return people.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const person = await getPersonBySlug(params.slug);
@@ -40,8 +35,6 @@ function ExternalLink({ href, children }: { href: string; children: ReactNode })
 export default async function PersonPage({ params }: { params: { slug: string } }) {
   const person = await getPersonBySlug(params.slug);
   if (!person) return notFound();
-
-  const edit = editLink(siteConfig.repoEditBase, person.filePath);
 
   const highlights = person.highlights ?? [];
   const projects = person.projects ?? [];
@@ -117,18 +110,6 @@ export default async function PersonPage({ params }: { params: { slug: string } 
               >
                 News
               </Link>
-
-              {edit ? (
-                <a
-                  href={edit}
-                  className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Edit this profile
-                </a>
-              ) : null}
-
             </div>
           </div>
         </div>
@@ -218,28 +199,6 @@ export default async function PersonPage({ params }: { params: { slug: string } 
                 </ol>
               </Card>
             ) : null}
-
-            {/* Update 안내 */}
-            <Card title="How to update" description="본인 페이지를 쉽게 수정하는 방법">
-              <div className="mt-4 text-sm text-zinc-700 dark:text-zinc-300 space-y-3">
-
-                <p>
-                  GitHub에서 Markdown 파일을 직접 수정할 수 있습니다.
-                </p>
-
-                {edit ? (
-                  <a
-                    href={edit}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-                  >
-                    Edit this profile
-                  </a>
-                ) : null}
-
-              </div>
-            </Card>
 
           </aside>
 

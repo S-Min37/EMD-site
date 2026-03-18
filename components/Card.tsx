@@ -7,12 +7,14 @@ export function Card({
   title,
   description,
   href,
+  media,
   children,
   className,
 }: {
   title: string;
   description?: string;
   href?: string;
+  media?: ReactNode;
   children?: ReactNode;
   className?: string;
 }) {
@@ -23,6 +25,7 @@ export function Card({
         className
       )}
     >
+      {media ? <div className="mb-4 overflow-hidden rounded-2xl">{media}</div> : null}
       <div className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
         {title}
       </div>

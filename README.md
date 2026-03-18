@@ -29,6 +29,36 @@ Open: http://localhost:3000
 
 ---
 
+## Sanity auto publish
+
+The app now reads content from Sanity first and can invalidate the Next.js
+cache automatically after publishing.
+
+- Revalidation endpoint: `/api/revalidate-tag`
+- Required env var: `SANITY_REVALIDATE_SECRET`
+- Private dataset read env var: `SANITY_API_READ_TOKEN`
+- Local helper commands:
+  - `npm run sanity:seed`
+  - `npm run sanity:import`
+
+If your Sanity dataset is private, the public site will show empty lists until
+`SANITY_API_READ_TOKEN` is configured in the app environment. Use a viewer token
+for server-side reads.
+
+Create a Sanity webhook with these settings:
+
+- URL: `https://<your-site-domain>/api/revalidate-tag`
+- Trigger on: create, update, delete
+- Filter: `_type in ["people", "news", "project", "publication"]`
+- Projection: `{ "_type": _type }`
+- Secret: same value as `SANITY_REVALIDATE_SECRET`
+
+Without a public site URL, the webhook itself cannot be registered yet. Local
+development still reflects changes after refresh because `next dev` does not
+serve the production cache.
+
+---
+
 ## 2) Update content (no code needed)
 
 ### News (with photos)

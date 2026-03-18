@@ -23,8 +23,3 @@ export function slugify(input: string) {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 }
-
-export function editLink(repoEditBase: string, filePath: string) {
-  if (!repoEditBase) return "";
-  return `${repoEditBase.replace(/\/$/, "")}/${filePath.replace(/^\//, "")}`;
-}
